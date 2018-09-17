@@ -1,2 +1,16 @@
+
+
+<!-- <%# name = 'bob' %>
+<ul>
+<%# 5.times do |i| %>
+  <li> <%#= "#{name} is number #{i}".upcase %>  </li>
+<%# end %>
+</ul> -->
+
 <h1>These are the books!</h1>
-<p>All hail the queen of the books!</p>
+<% @books.each do |book| %>
+  <h2>
+    <%= book[:title] %>
+  </h2>
+  <p> by <%= book[:author] %></p>
+<% end %>
