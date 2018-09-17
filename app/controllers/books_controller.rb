@@ -12,7 +12,11 @@ class BooksController < ApplicationController
   def show
     id = params[:id]
     @book = BOOKS.find do |book|
-      book[:id] == id
+      book[:id] == id.to_i
+    end
+
+    if @book.nil?
+
     end
   end
 

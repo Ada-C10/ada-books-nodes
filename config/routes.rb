@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   get '/books', to: 'books#index'
   get '/books/:id', to: 'books#show'
+
+  #delete '/books/:id', to: 'books#destroy'
+
   # get '/books/show'
   # get '/books/whozeewhatsit'
   # get '/authors', to: 'authors#index'
