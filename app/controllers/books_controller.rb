@@ -16,7 +16,7 @@ class BooksController < ApplicationController
     end
 
     if @book.nil?
-
+     render :notfound, status: :not_found
     end
   end
 
