@@ -9,9 +9,9 @@
 
 <h1>These are the books!</h1>
 <% @books.each do |book| %>
-  <a href="/books/<%= book[:id] %>"><h2>
-    <%= book[:title] %>
+  <a href="/books/<%= book.id %>"><h2>
+    <%= book.title %>
   </h2>
 </a>
-  <p> by <%= book[:author] %></p>
+  <p> by <%= book.author %></p>
 <% end %>
