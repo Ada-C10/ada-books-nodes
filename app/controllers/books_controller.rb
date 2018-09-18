@@ -10,10 +10,8 @@ class BooksController < ApplicationController
   end
 
   def show
-    id = params[:id]
-    @book = BOOKS.find do |book|
-      book[:id] == id.to_i
-    end
+    id = params[:id].to_i
+    @book = Book.find_by(id: id)
 
     if @book.nil?
      render :notfound, status: :not_found
