@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root "books#index"
+
   get '/books', to: 'books#index', as: 'books'
 
   get '/books/new', to: 'books#new', as: 'new_book'
