@@ -9,7 +9,7 @@
 
 <h1>These are the books!</h1>
 <% @books.each do |book| %>
-  <a href="/books/<%= book.id %>"><h2>
+  <a href="<%= book_path(book.id) %>"><h2>
     <%= book.title %>
   </h2>
 </a>

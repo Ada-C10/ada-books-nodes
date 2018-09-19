@@ -13,9 +13,26 @@ class BooksController < ApplicationController
     id = params[:id].to_i
     @book = Book.find_by(id: id)
 
+
     if @book.nil?
      render :notfound, status: :not_found
     end
+  end
+
+  def create
+  end
+
+  def new
+  end
+
+  def edit
+    @book = Book.find(params[:id].to_i)
+  end
+
+  def update
+  end
+
+  def destroy
   end
 
 
