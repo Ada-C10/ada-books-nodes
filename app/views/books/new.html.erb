@@ -1,1 +1,13 @@
-<%= new_book_path %>
+<%# form_with url: "/books", method: :post, class: "book-form" do |f|%>
+
+<%= form_with model: @book, class: "book-form" do |f|%>
+  <p>Please provide the following information to save your book to our database:</p>
+
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+
+  <%= f.label :author %>
+  <%= f.text_field :author %>
+
+  <%= f.submit "Save Book", class: "book-button" %>
+<%end%>
