@@ -13,4 +13,5 @@
   </h2>
 </a>
   <p> by <%= book.author %></p>
+  <%= link_to "Delete", book_path(book.id), method: :delete %>
 <% end %>
