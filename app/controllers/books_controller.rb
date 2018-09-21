@@ -19,14 +19,6 @@ class BooksController < ApplicationController
     end
   end
 
-  def create
-    @book = Book.new(author: params[:book][:author], title: params[:book][:title]) #instantiate a new book
-    if @book.save # save returns true if the database insert succeeds
-      redirect_to root_path # go to the index so we can see the book in the list
-    else # save failed :(
-      render :new # show the new book form view again
-    end
-  end
 
   def new
     @book = Book.new
@@ -36,8 +28,7 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id].to_i)
   end
 
-  def update
-  end
+
 
   def destroy
     book = Book.find_by(id: params[:id].to_i)
@@ -45,6 +36,29 @@ class BooksController < ApplicationController
 
     #redirect_to root_path
   end
+
+
+    def create
+      @book = Book.new(book_params) #instantiate a new book
+      if @book.save # save returns true if the database insert succeeds
+        redirect_to root_path # go to the index so we can see the book in the list
+      else # save failed :(
+        render :new # show the new book form view again
+      end
+    end
+
+    def update
+      book = Book.find_by(id: params[:id].to_i)
+      book.update(book_params)
+
+      redirect_to book_path(book.id)
+    end
+
+  private
+
+    def book_params
+      return params.require(:book).permit(:title, :author, :description)
+    end
 
 
 

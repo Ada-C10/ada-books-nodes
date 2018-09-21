@@ -4,9 +4,7 @@
   <h1><%=@book.title %></h1>
   <h3> by <%= @book.author %></h3>
   <p><%= @book.description %> </p>
-  <a href=<%="books/#{@book.id}/edit"%>>
-    Edit
-  </a>
+  <%= link_to "Edit", edit_book_path(@book.id) %>
   <div></div>
   <%= link_to "Delete #{@book.title}", book_path(@book.id), method: :delete %>
 <% end %>
