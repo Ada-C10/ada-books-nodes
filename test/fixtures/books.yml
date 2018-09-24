@@ -1,9 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  title: MyString
-  author: MyString
+poodr:
+  title: Practical Object Oriented Programming in Ruby
+  author: Metz
+  description: a great book
 
 two:
   title: MyString
   author: MyString
+  description: a stringy book

@@ -1,9 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  pulisher: MyString
+  name: author1
+  publisher: MyString
+  nationality: USA
 
 two:
   name: MyString
-  pulisher: MyString
+  publisher: MyString
+  nationality: Canada

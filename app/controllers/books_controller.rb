@@ -25,7 +25,11 @@ class BooksController < ApplicationController
   end
 
   def edit
-    @book = Book.find(params[:id].to_i)
+    @book = Book.find_by(id: params[:id].to_i)
+
+    if @book.nil?
+      render :notfound, status: :not_found
+    end
   end
 
 
