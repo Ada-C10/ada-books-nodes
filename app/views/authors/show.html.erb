@@ -1,0 +1,6 @@
+<% if @author.nil? %>
+  <h1> 404 Not found</h1>
+<% else %>
+  <h1><%=@author.name %></h1>
+  <p><%= @author.first_published %> </p>
+<% end %>
