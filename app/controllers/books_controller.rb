@@ -47,21 +47,30 @@ class BooksController < ApplicationController
       if @book.save # save returns true if the database insert succeeds
         redirect_to root_path # go to the index so we can see the book in the list
       else # save failed :(
-        render :new # show the new book form view again
+        render :new, status: :bad_request # show the new book form view again
       end
     end
 
     def update
       book = Book.find_by(id: params[:id].to_i)
-      book.update(book_params)
 
-      redirect_to book_path(book.id)
+      if book
+        book.update(book_params)
+
+        if book.valid?
+          redirect_to book_path(book.id)
+        else
+          render :edit, status: :error
+        end
+      else
+        redirect_to books_path, status: :not_found
+      end
     end
 
   private
 
     def book_params
-      return params.require(:book).permit(:title, :author, :description)
+      return params.require(:book).permit(:title, :author_id, :description)
     end
 
 

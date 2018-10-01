@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: author1
-  publisher: MyString
+metz:
+  name: Sandy Metz
+  publisher: Some Publisher
   nationality: USA
 
 two:
-  name: MyString
-  publisher: MyString
+  name: Bob Woodward
+  publisher: Penguin
   nationality: Canada

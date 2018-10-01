@@ -2,7 +2,7 @@
 
 poodr:
   title: Practical Object Oriented Programming in Ruby
-  author: Metz
+  author: :metz
   description: a great book
 
 two:
