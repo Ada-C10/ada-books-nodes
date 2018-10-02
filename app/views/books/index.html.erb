@@ -12,6 +12,6 @@
   <h2><%= link_to "This IS: #{book.title}", book_path(book.id) %>
   </h2>
 </a>
-  <p> by <%= book.author %></p>
+  <p> by <%= book.author.name %></p>
   <%= link_to "Delete", book_path(book.id), method: :delete %>
 <% end %>
