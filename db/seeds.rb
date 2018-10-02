@@ -18,6 +18,11 @@ authors = [
     name: "Roxane Gay",
     publisher: "Scholastic",
     nationality: 1
+  },
+  {
+    name: "JK Rowling",
+    publisher: "Scholastic",
+    nationality: 43
   }
 ]
 
