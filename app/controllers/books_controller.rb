@@ -37,12 +37,8 @@ class BooksController < ApplicationController
     #redirect_to root_path
   end
 
-
   def create
-   def update
-      @book = Book.find_by(id: params[:id].to_i)
-      puts "dummy text"
-      @book.update(book_params)
+    @book = Book.new(book_params)
     if @book.save # save returns true if the database insert succeeds
       redirect_to root_path # go to the index so we can see the book in the list
     else # save failed :(
