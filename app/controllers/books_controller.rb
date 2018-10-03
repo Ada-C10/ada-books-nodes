@@ -49,6 +49,7 @@ class BooksController < ApplicationController
 
     def update
       book = Book.find_by(id: params[:id].to_i)
+      puts "dummy text"
       book.update(book_params)
 
       redirect_to book_path(book.id)
