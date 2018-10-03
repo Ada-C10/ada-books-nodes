@@ -11,6 +11,12 @@
 
   <body>
     <header>
+      <%= flash[:errors] %>
+      <% if flash[:errors] %>
+        <% flash[:errors].each do |field, msg| %>
+          <strong><%= field %>:</strong> <%= msg %>
+        <% end %>
+      <% end %>
       <h1>Welcome to Ada Books!</h1>
       <nav>
         <ul>
