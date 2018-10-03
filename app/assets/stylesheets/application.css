@@ -13,3 +13,7 @@
  *= require_tree .
  *= require_self
  */
+
+ .description-section {
+   margin: 10px;
+ }
