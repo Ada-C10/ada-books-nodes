@@ -18,6 +18,11 @@ authors = [
     name: "Roxane Gay",
     publisher: "Scholastic",
     nationality: 1
+  },
+  {
+    name: "JK Rowling",
+    publisher: "Scholastic",
+    nationality: 43
   }
 ]
 
@@ -76,6 +81,13 @@ books = [
     description: "A great collection of essays",
     date_published: DateTime.new(2014, 1, 1),
     author_name: "Roxane Gay",
+    author_id: 0
+  },
+  {
+    title: "The Deathly Hallows",
+    description: "The tale of sad wizards",
+    date_published: DateTime.new(2007, 1, 1),
+    author_name: "JK Rowling",
     author_id: 0
   }
 ]
