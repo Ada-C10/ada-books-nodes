@@ -23,8 +23,11 @@
   <%= f.label :title %>
   <%= f.text_field :title %>
 
-  <%= f.label :author %>
-  <%= f.text_field :author %>
+  <%= f.label :author_id, "Author" %>
+  <%= f.select :author_id, Author.author_list %>
+  <%#= f.select :author_id, [ ['Bob', 1], ['Ada', 2], ['JK', 42]  ] %>
+
+  <%# f.text_field :author %>
 
   <%# f.hidden :creator, value: 'Divya' %>
 

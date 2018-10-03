@@ -6,7 +6,12 @@
 
 class BooksController < ApplicationController
   def index
-    @books = Book.all.order(:title)
+    if params[:author_id]
+      author_id = params[:author_id]
+      @books = Author.find_by(id: author_id).books.order(:title)
+    else
+      @books = Book.all.order(:title)
+    end
   end
 
   def show
@@ -22,6 +27,10 @@ class BooksController < ApplicationController
 
   def new
     @book = Book.new
+    if params[:author_id]
+      @author_id = params[:author_id].to_i
+      @book.author_id = @author_id
+    end
   end
 
   def edit

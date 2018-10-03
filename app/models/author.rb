@@ -1,6 +1,12 @@
 class Author < ApplicationRecord
   has_many :books
 
+  def self.author_list
+    return Author.all.map do |author|
+      [author.name , author.id]
+    end
+  end
+
   def first_published
     books_with_year = self.books.where.not(date_published: nil)
     first_book = books_with_year.order(date_published: :asc).first

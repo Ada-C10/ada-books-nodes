@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   resources :books
 
+  #get '/authors/:author_id/books', to: 'books#index'
+
   resources :authors do
     resources :books, only: [:index, :new]
   end

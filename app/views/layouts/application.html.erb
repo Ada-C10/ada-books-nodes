@@ -11,12 +11,6 @@
 
   <body>
     <header>
-      <%= flash[:errors] %>
-      <% if flash[:errors] %>
-        <% flash[:errors].each do |field, msg| %>
-          <strong><%= field %>:</strong> <%= msg %>
-        <% end %>
-      <% end %>
       <h1>Welcome to Ada Books!</h1>
       <nav>
         <ul>
@@ -24,8 +18,10 @@
             <%= link_to  "Home", "/", id: "home-link" %>
           </li>
          <li>
-           <%= link_to "Books Index", books_path%>
+           <%= link_to "Books Index", books_path %>
          </li>
+         <li>
+           <%= link_to "Authors Index", authors_path %>
          <li>
            <a href="<%= new_book_path%>">
              Add a book

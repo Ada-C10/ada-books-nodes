@@ -3,4 +3,10 @@
 <% else %>
   <h1><%=@author.name %></h1>
   <p><%= @author.first_published %> </p>
+  <p><%= link_to "Books by #{@author.name}", author_books_path(@author.id) %>
+
+
+
+
+  <%= link_to "Add a book", new_author_book_path(@author.id) %>
 <% end %>
