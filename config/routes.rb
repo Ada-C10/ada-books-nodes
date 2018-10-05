@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   #get '/authors/:author_id/books', to: 'books#index'
 
   resources :authors do
-    resources :books, only: [:new]
+    resources :books, only: [:index, :new]
   end
 
   # get '/authors/:id', to: 'authors#show', as: 'author'
