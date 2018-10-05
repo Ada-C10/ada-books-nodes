@@ -23,6 +23,11 @@ authors = [
     name: "JK Rowling",
     publisher: "Scholastic",
     nationality: 43
+  },
+  {
+    name: "Margot Lee Shetterly",
+    publisher: "Scholastic",
+    nationality: 1
   }
 ]
 
@@ -88,6 +93,13 @@ books = [
     description: "The tale of sad wizards",
     date_published: DateTime.new(2007, 1, 1),
     author_name: "JK Rowling",
+    author_id: 0
+  },
+  {
+    title: "Hidden Figures",
+    description: "A good book that existed before the movie",
+    date_published: DateTime.new(2008, 1, 1),
+    author_name: "Margot Lee Shetterly",
     author_id: 0
   }
 ]
