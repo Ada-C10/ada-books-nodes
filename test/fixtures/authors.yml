@@ -2,8 +2,8 @@
 
 one:
   name: MyString
-  pulisher: MyString
+  publisher: MyString
 
 two:
   name: MyString
-  pulisher: MyString
+  publisher: MyString
