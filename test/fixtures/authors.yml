@@ -1,9 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  publisher: MyString
+metz:
+  name: Sandi Metz
+  publisher: Addison-Wesley
 
-two:
-  name: MyString
-  publisher: MyString
+galbraith:
+  name: Robert Galbraith
+  publisher: Tor
+
+jordan:
+  name: Robert Jordan
+  publisher: Tor

@@ -1,9 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  title: MyString
-  author: MyString
+detective_book:
+  title: Career of Evil
+  author: galbraith
+  description: Detective book
+  date_published: '2018-10-10'
 
-two:
-  title: MyString
-  author: MyString
+poodr:
+  title: Practical OOD in Ruby
+  author: metz
+  description: Not Poopr
+  date_published: '2014-01-01'

@@ -1,15 +1,18 @@
 require "test_helper"
 
 describe Book do
-  let(:book) {
-    Book.new title: 'War and Peace',
-             author_id: Author.first.id,
-             description: 'blah',
-             date_published: Date.parse('2018-10-09')
-  }
+  let(:book) { books(:poodr)  }
 
   it "must be valid" do
     expect(book).must_be :valid?
+  end
+
+  it 'has required fields' do
+    fields = [:title, :author, :description, :date_published]
+
+    fields.each do |field|
+      expect(book).must_respond_to field
+    end
   end
 
   describe 'Relationships' do
@@ -43,6 +46,7 @@ describe Book do
   describe 'validations' do
     it 'must have a title' do
       # Arrange
+      book = books(:detective_book)
       book.title = nil
 
       # Act
@@ -76,9 +80,9 @@ describe Book do
 
     it 'requires a unique title' do
       #other_book = book.clone
-      other_book = Book.new title: book.title, author_id: Author.last.id
+      other_book = books(:detective_book)
+      other_book.title = book.title
 
-      book.save
       valid = other_book.valid?
 
       expect(valid).must_equal false
