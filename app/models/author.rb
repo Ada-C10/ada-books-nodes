@@ -1,5 +1,6 @@
 class Author < ApplicationRecord
   has_many :books
+  has_many :genres, through: :books
 
   def self.author_list
     return Author.all.map do |author|

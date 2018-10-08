@@ -103,6 +103,24 @@ books = [
     author_id: 0
   }
 ]
+
+genres = [
+  {
+    name: 'mystery'
+  },
+  {
+    name: 'Sci Fi'
+  },
+  {
+    name: 'Horror'
+  }
+]
+
+genres.each do |genre|
+  Genre.create(genre)
+end
+
+
 failedAuthors = []
 failedBooks = []
 authors.each do |author|
@@ -129,3 +147,7 @@ end
 if failedBooks.length > 0
   puts "#{failedBooks.length} books failed to load out of #{books.length} total books"
 end
+
+Book.first.genres << Genre.first
+Book.last.genres << Genre.first
+Book.all[2].genres << Genre.all.sample

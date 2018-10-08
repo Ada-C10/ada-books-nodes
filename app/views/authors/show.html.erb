@@ -2,6 +2,12 @@
   <h1> 404 Not found</h1>
 <% else %>
   <h1><%=@author.name %></h1>
+  <h2>Genres</h2>
+  <ul>
+    <% @author.genres.each do |genre| %>
+      <li><%= genre.name %></li>
+    <% end %>
+  </ul>
   <p><%= @author.first_published %> </p>
   <p><%= link_to "Books by #{@author.name}", author_books_path(@author.id) %>
 
