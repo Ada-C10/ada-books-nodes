@@ -1,0 +1,14 @@
+1. Upvote
+  1. Edge cases
+    1. Test Uniqueness of user-work pair
+      1. Test where the user already has a vote for that work
+      2. Test where the user does not have a vote for that work
+2. Works by category sorted by votes
+  1. Edge Cases
+    1. No works in that category
+    2. No votes
+    3. Ties
+
+
+1. What are the edge cases
+2.  Describe what tests you would write

@@ -41,16 +41,28 @@ class BooksController < ApplicationController
 
   def destroy
     book = Book.find_by(id: params[:id].to_i)
-    @deleted_book = book.destroy
+    if book.nil?
+      flash[:error] = "Book #{params[:id]} not found"
+    else
+      @deleted_book = book.destroy
+      flash[:success] = "#{book.title} deleted"
+    end
 
-    #redirect_to root_path
+    redirect_to root_path
   end
 
   def create
     @book = Book.new(book_params)
     if @book.save # save returns true if the database insert succeeds
+      flash[:success] = 'Book Created!'
+
       redirect_to root_path # go to the index so we can see the book in the list
     else # save failed :(
+      flash.now[:error] = 'Book not created!'
+      @book.errors.messages.each do |field, messages|
+        flash.now[field] = messages
+      end
+
       render :new # show the new book form view again
     end
   end

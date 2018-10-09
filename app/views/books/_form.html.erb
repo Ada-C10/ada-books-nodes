@@ -1,20 +1,6 @@
 
 <h1> <%= action_name %> </h1>
-<%# form_with url: "/books", method: :post, class: "book-form" do |f|%>
 
-<% if @book.errors.any? %>
-<!-- {
-  title: ['Must be unique', 'must be longer than 5 characters'],
-  author: ['must exist']
-} -->
-  <ul class="errors">
-    <% @book.errors.each do |column, message| %>
-      <li>
-        <strong><%= column.capitalize %></strong> <%= message %>
-      </li>
-    <% end %>
-  </ul>
-<% end %>
 
 
 <%= form_with model: @book, class: "book-form"  do |f|%>
