@@ -1,0 +1,7 @@
+<h1>Please Log in</h1>
+
+<%= form_with model: @author, url: login_path, method: :post do |f| %>
+  <%= f.label :name, 'Username' %>
+  <%= f.text_field :name, placeholder: 'Username' %>
+  <%= f.submit 'Login' %>
+<% end %>

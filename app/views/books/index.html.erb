@@ -7,6 +7,7 @@
 <%# end %>
 </ul> -->
 
+
 <h1>These are the books!</h1>
 <% @books.each do |book| %>
   <h2><%= link_to "This IS: #{book.title}", book_path(book.id) %>

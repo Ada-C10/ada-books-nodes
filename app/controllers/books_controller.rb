@@ -6,6 +6,9 @@
 
 class BooksController < ApplicationController
   def index
+    @current_user = Author.find_by(id: session[:user_id]  )
+
+
     if params[:author_id]
       author_id = params[:author_id]
       @books = Author.find_by(id: author_id).books.order(:title)
