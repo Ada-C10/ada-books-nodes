@@ -14,10 +14,11 @@
       <section class="flash">
         <% flash.each do |name, message| %>
           <% if message.class == Array %>
+          <div class="alert-warning">
             <% message.each do |msg| %>
-              <div class="alert-<%= name %>">
-                <strong><%= "#{name}:" %></strong><%= " #{msg}" %></div>
+                <p><strong><%= "#{name}:" %></strong><%= " #{msg}" %></p>
             <% end %>
+          </div>
           <% else %>
             <div class="alert-<%= name %>">
                 <%= message %>
@@ -46,10 +47,10 @@
            </a>
          </li>
          <li>
-         <% if session[:user_id] %>
-           <%= link_to "Log Out", logout_path, method: :delete %>
+         <% if @current_user %>
+           <%= link_to "Log Out", logout_path, method: :delete, class: 'btn btn-primary' %>
         <% else %>
-           <%= link_to "Login", login_path %>
+           <%= link_to "Login", login_path, class: 'btn btn-primary' %>
         <% end %>
           </li>
         </ul>

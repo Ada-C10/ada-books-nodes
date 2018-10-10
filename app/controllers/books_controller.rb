@@ -6,9 +6,6 @@
 
 class BooksController < ApplicationController
   def index
-    @current_user = Author.find_by(id: session[:user_id]  )
-
-
     if params[:author_id]
       author_id = params[:author_id]
       @books = Author.find_by(id: author_id).books.order(:title)
@@ -61,7 +58,7 @@ class BooksController < ApplicationController
 
       redirect_to root_path # go to the index so we can see the book in the list
     else # save failed :(
-      flash.now[:error] = 'Book not created!'
+      flash.now[:danger] = 'Book not created!'
       @book.errors.messages.each do |field, messages|
         flash.now[field] = messages
       end
