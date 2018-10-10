@@ -5,6 +5,9 @@
 # ]
 
 class BooksController < ApplicationController
+  before_action :find_book, only: [:show, :edit, :update, :destroy]
+
+
   def index
     if params[:author_id]
       author_id = params[:author_id]
@@ -14,15 +17,7 @@ class BooksController < ApplicationController
     end
   end
 
-  def show
-    id = params[:id].to_i
-    @book = Book.find_by(id: id)
-
-
-    if @book.nil?
-      render :notfound, status: :not_found
-    end
-  end
+  def show;  end
 
 
   def new
@@ -33,22 +28,16 @@ class BooksController < ApplicationController
     end
   end
 
-  def edit
-    @book = Book.find(params[:id].to_i)
-  end
+  def edit; end
 
 
 
   def destroy
-    book = Book.find_by(id: params[:id].to_i)
-    if book.nil?
-      flash[:error] = "Book #{params[:id]} not found"
-    else
-      @deleted_book = book.destroy
-      flash[:success] = "#{book.title} deleted"
+    unless @book.nil?
+      @book.destroy
+      flash[:success] = "#{@book.title} deleted"
+      redirect_to root_path
     end
-
-    redirect_to root_path
   end
 
   def create
@@ -68,15 +57,23 @@ class BooksController < ApplicationController
   end
 
   def update
-    @book = Book.find_by(id: params[:id].to_i)
-    if @book.update(book_params)
+    if @book && @book.update(book_params)
       redirect_to book_path(@book.id)
-    else
+    elsif @book
       render :edit
     end
   end
 
   private
+
+  def find_book
+    @book = Book.find_by(id: params[:id].to_i)
+
+    if @book.nil?
+      flash.now[:danger] = "Cannot find the book #{params[:id]}"
+      render :notfound
+    end
+  end
 
   def book_params
     return params.require(:book).permit(:title, :author_id, :description)
