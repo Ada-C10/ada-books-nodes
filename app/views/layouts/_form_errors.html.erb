@@ -1,0 +1,14 @@
+<% if model.errors.any? %>
+  <ul class="errors">
+    <% model.errors.messages.each do |column, problem_list| %>
+      <% problem_list.each do |problem| %>
+        <li>
+          <strong>
+            <%= column.capitalize %>
+          </strong>
+          <%= problem %>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+<% end %>

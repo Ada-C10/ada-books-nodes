@@ -48,9 +48,6 @@ class BooksController < ApplicationController
       redirect_to root_path # go to the index so we can see the book in the list
     else # save failed :(
       flash.now[:danger] = 'Book not created!'
-      @book.errors.messages.each do |field, messages|
-        flash.now[field] = messages
-      end
 
       render :new # show the new book form view again
     end
