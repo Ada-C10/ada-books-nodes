@@ -41,6 +41,28 @@ describe BooksController do
       # Assert
       must_respond_with :success
     end
+
+    it "can get the form with the new_author_book_path" do
+      # Arrange
+      id = authors(:jordan).id
+
+      # Act
+      get new_author_book_path(id)
+
+      # Assert
+      must_respond_with :success
+    end
+    it "must respond with success for an invalid author id" do
+      # Arrange
+      id = -1
+
+      # Act
+      get new_author_book_path(id)
+
+      # Assert
+      must_respond_with :success
+      expect(flash[:warning]).must_equal "That author doesn't exit"
+    end
   end
 
   describe "edit" do
@@ -63,9 +85,47 @@ describe BooksController do
       get edit_book_path(id)
 
       # Assert
+      expect(response).must_be :not_found?
       must_respond_with :not_found
       expect(flash[:danger]).must_equal "Cannot find the book -1"
     end
 
   end
+
+  describe "destroy" do
+    it "can destroy a book given a valid id" do
+      # Arrange
+      id = books(:poodr).id
+      title = books(:poodr).title
+
+      # Act - Assert
+      expect {
+        delete book_path(id)
+      }.must_change 'Book.count', -1
+
+      must_respond_with :redirect
+      expect(flash[:success]).must_equal "#{title} deleted"
+      expect(Book.find_by(id: id)).must_equal nil
+    end
+  end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 end

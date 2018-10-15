@@ -24,7 +24,12 @@ class BooksController < ApplicationController
     @book = Book.new
     if params[:author_id]
       @author_id = params[:author_id].to_i
+      author = Author.find_by(id: @author_id)
+      if author.nil?
+        flash.now[:warning] = "That author doesn't exit"
+      end
       @book.author_id = @author_id
+
     end
   end
 
