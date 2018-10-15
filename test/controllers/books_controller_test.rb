@@ -104,6 +104,7 @@ describe BooksController do
       }.must_change 'Book.count', -1
 
       must_respond_with :redirect
+      must_redirect_to books_path
       expect(flash[:success]).must_equal "#{title} deleted"
       expect(Book.find_by(id: id)).must_equal nil
     end
@@ -147,6 +148,8 @@ describe BooksController do
         }.must_change 'Book.count', 1
 
         must_respond_with :redirect
+        must_redirect_to book_path(Book.last.id)
+
         expect(Book.last.title).must_equal book_hash[:book][:title]
         expect(Book.last.author).must_equal Author.find_by(id: book_hash[:book][:author_id])
         expect(Book.last.description).must_equal book_hash[:book][:description]
@@ -176,6 +179,8 @@ describe BooksController do
         }.wont_change 'Book.count'
 
         must_respond_with :redirect
+        must_redirect_to book_path(id)
+
         new_book = Book.find_by(id: id)
 
         expect(new_book.title).must_equal book_hash[:book][:title]
