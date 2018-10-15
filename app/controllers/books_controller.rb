@@ -54,7 +54,7 @@ class BooksController < ApplicationController
     else # save failed :(
       flash.now[:danger] = 'Book not created!'
 
-      render :new # show the new book form view again
+      render :new, status: :bad_request # show the new book form view again
     end
   end
 
@@ -62,7 +62,7 @@ class BooksController < ApplicationController
     if @book && @book.update(book_params)
       redirect_to book_path(@book.id)
     elsif @book
-      render :edit
+      render :edit, status: :bad_request
     end
   end
 

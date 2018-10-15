@@ -107,11 +107,113 @@ describe BooksController do
       expect(flash[:success]).must_equal "#{title} deleted"
       expect(Book.find_by(id: id)).must_equal nil
     end
+
+    it "should respond with not_found for an invalid id" do
+      id = -1
+
+      # Equivalent
+      # before_count = Book.count
+      # delete book_path(id)
+      # after_count = Book.count
+      # expect(before_count).must_equal after_count
+
+      expect {
+        delete book_path(id)
+        # }.must_change 'Book.count', 0
+      }.wont_change 'Book.count'
+
+      must_respond_with :not_found
+      expect(flash.now[:danger]).must_equal "Cannot find the book #{id}"
+    end
   end
 
+  describe "create & update" do
+    let (:book_hash) do
+      {
+        book: {
+          title: 'White Teeth',
+          author_id: authors(:galbraith).id,
+          description: 'Good book'
+        }
+      }
+    end
+
+
+    describe "create" do
+      it "can create a new book given valid params" do
+        # Act-Assert
+        expect {
+          post books_path, params: book_hash
+        }.must_change 'Book.count', 1
+
+        must_respond_with :redirect
+        expect(Book.last.title).must_equal book_hash[:book][:title]
+        expect(Book.last.author).must_equal Author.find_by(id: book_hash[:book][:author_id])
+        expect(Book.last.description).must_equal book_hash[:book][:description]
+
+      end
+
+      it "responds with an error for invalid params" do
+        # Arranges
+        book_hash[:book][:title] = nil
+
+        # Act-Assert
+        expect {
+          post books_path, params: book_hash
+        }.wont_change 'Book.count'
+
+        must_respond_with :bad_request
+
+      end
+    end
+
+    describe "update" do
+      it "can update a model with valid params" do
+        id = books(:poodr).id
+
+        expect {
+          patch book_path(id), params: book_hash
+        }.wont_change 'Book.count'
+
+        must_respond_with :redirect
+        new_book = Book.find_by(id: id)
+
+        expect(new_book.title).must_equal book_hash[:book][:title]
+        expect(new_book.author_id).must_equal book_hash[:book][:author_id]
+        expect(new_book.description).must_equal book_hash[:book][:description]
+      end
+      it "gives an error if the book params are invalid" do
+        # Arrange
+        book_hash[:book][:title] = nil
+        id = books(:poodr).id
+        old_poodr = books(:poodr)
+
+
+        expect {
+          patch book_path(id), params: book_hash
+        }.wont_change 'Book.count'
+        new_poodr = Book.find(id)
+
+        must_respond_with :bad_request
+        expect(old_poodr.title).must_equal new_poodr.title
+        expect(old_poodr.author_id).must_equal new_poodr.author_id
+        expect(old_poodr.description).must_equal new_poodr.description
+      end
+      it "gives not_found for a book that doesn't exist" do
+        id = -1
+
+        expect {
+          patch book_path(id), params: book_hash
+        }.wont_change 'Book.count'
+
+        must_respond_with :not_found
+
+      end
+    end
 
 
 
+  end
 
 
 
