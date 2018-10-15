@@ -68,7 +68,7 @@ class BooksController < ApplicationController
 
     if @book.nil?
       flash.now[:danger] = "Cannot find the book #{params[:id]}"
-      render :notfound
+      render :notfound, status: :not_found
     end
   end
 
