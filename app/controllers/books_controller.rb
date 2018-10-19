@@ -6,7 +6,7 @@
 
 class BooksController < ApplicationController
   before_action :find_book, only: [:show, :edit, :update, :destroy]
-
+  before_action :require_login, except: [:index, :show]
 
   def index
     if params[:author_id]

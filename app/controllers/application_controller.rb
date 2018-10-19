@@ -6,8 +6,15 @@ class ApplicationController < ActionController::Base
     private
 
     def find_user
-      @current_user = Author.find_by(id: session[:user_id])
-    end
+       @current_user ||= User.find(session[:user_id]) if session[:user_id]
+     end
+
+     def require_login
+       if find_user.nil?
+         flash[:error] = "You must be logged in to view this section"
+         redirect_to root_path
+       end
+     end
 
     def set_cache_headers
       response.headers["Cache-Control"] = "no-cache, no-store"
