@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  # Turn the auth hash into an instance
+  # of class User
   def self.build_from_github(auth_hash)
    user = User.new
    user.uid = auth_hash[:uid]

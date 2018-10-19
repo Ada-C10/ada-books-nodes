@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   # get 'sessions/login', to: 'sessions#new', as: 'login_form'
   # delete 'sessions/destroy', to: 'sessions#destroy', as: 'logout'
 
-  get "/auth/:provider/callback", to: "sessions#create"
+  get "/auth/:provider/callback", to: "sessions#create", as: 'auth_callback'
   delete "/logout", to: "sessions#destroy", as: "logout"
 
   root "books#index"
