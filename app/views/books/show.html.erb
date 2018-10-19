@@ -2,6 +2,8 @@
   <h1> 404 Not found</h1>
 <% else %>
   <h1><%=@book.title %></h1>
+  <%= readable_date(@book.created_at) %>
+  <%= random_image(300, 400) %>
   <h3> by <%= link_to "#{@book.author.name}", author_path(@book.author.id) %></h3>
   <p><%= @book.description %> </p>
   <%= link_to "Edit", edit_book_path(@book.id) %>
